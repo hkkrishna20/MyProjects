@@ -1,0 +1,326 @@
+package roseindia.net;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
+
+public class ServletOne extends HttpServlet{
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		request.setAttribute("name", "RoseIndia");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/servletTwo");
+		rd.forward(request, response);
+	}
+}
+ServletTwo.java
+
+package roseindia.net;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+
+public class ServletTwo extends HttpServlet {
+
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+{
+response.setContentType("text/html");
+PrintWriter out = response.getWriter();
+Object name = request.getAttribute("name");
+out.println("<html><head><title>request.setAttribute</title></head><body>");
+out.println("<h2>request.setAttribute() Example</h2>");
+out.println("Attribute Value : " +name);
+out.println("</body></html>");
+}
+}
+web.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<display-name>setAttribute</display-name>
+<servlet>
+<servlet-name>ServletOne</servlet-name>
+<servlet-class>roseindia.net.ServletOne</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ServletOne</servlet-name>
+<url-pattern>/servletOne</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>ServletTwo</servlet-name>
+<servlet-class>roseindia.net.ServletTwo</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ServletTwo</servlet-name>
+<url-pattern>/servletTwo</url-pattern>
+</servlet-mapping>
+</web-app>
+request.setAttribute() using JSP
+
+index.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Index Page</title>
+</head>
+<body>
+<%
+request.setAttribute("name", "RoseIndia");
+%>
+<jsp:forward page="request.jsp"/>
+</body>
+</html>
+request.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>request.setAttribute</title>
+</head>
+<body>
+<h2>request.setAttribute() Example</h2>
+<%
+Object name = request.getAttribute("name");
+out.println("Attribute Value : " +name);
+%>
+</body>
+</html>
+web.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<display-name>setAttribute</display-name>
+<welcome-file-list>
+<welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+</web-app>
+ index.jsp
+<form action="ControllerServlet" method="post">  
+Name:<input type="text" name="name"><br>  
+Password:<input type="password" name="password"><br>  
+<input type="submit" value="login">  
+</form>  
+ControllerServlet
+package com.javatpoint;  
+import java.io.IOException;  
+import java.io.PrintWriter;  
+import javax.servlet.RequestDispatcher;  
+import javax.servlet.ServletException;  
+import javax.servlet.http.HttpServlet;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+public class ControllerServlet extends HttpServlet {  
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)  
+            throws ServletException, IOException {  
+        response.setContentType("text/html");  
+        PrintWriter out=response.getWriter();  
+          
+        String name=request.getParameter("name");  
+        String password=request.getParameter("password");  
+          
+        LoginBean bean=new LoginBean();  
+        bean.setName(name);  
+        bean.setPassword(password);  
+        request.setAttribute("bean",bean);  
+          
+        boolean status=bean.validate();  
+          
+        if(status){  
+            RequestDispatcher rd=request.getRequestDispatcher("login-success.jsp");  
+            rd.forward(request, response);  
+        }  
+        else{  
+            RequestDispatcher rd=request.getRequestDispatcher("login-error.jsp");  
+            rd.forward(request, response);  
+        }  
+      
+    }  
+  
+    @Override  
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)  
+            throws ServletException, IOException {  
+        doPost(req, resp);  
+    }  
+}  
+ LoginBean.java
+package com.javatpoint;  
+public class LoginBean {  
+private String name,password;  
+  
+public String getName() {  
+    return name;  
+}  
+public void setName(String name) {  
+    this.name = name;  
+}  
+public String getPassword() {  
+    return password;  
+}  
+public void setPassword(String password) {  
+    this.password = password;  
+}  
+public boolean validate(){  
+    if(password.equals("admin")){  
+        return true;  
+    }  
+    else{  
+        return false;  
+    }  
+}  
+}  
+
+ login-success.jsp
+<%@page import="com.javatpoint.LoginBean"%>  
+  
+<p>You are successfully logged in!</p>  
+<%  
+LoginBean bean=(LoginBean)request.getAttribute("bean");  
+out.print("Welcome, "+bean.getName());  
+%>  
+File: login-error.jsp
+<p>Sorry! username or password error</p>  
+<%@ include file="index.jsp" %>  
+File: web.xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"   
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"   
+id="WebApp_ID" version="3.0">  
+    
+  <servlet>  
+  <servlet-name>s1</servlet-name>  
+  <servlet-class>com.javatpoint.ControllerServlet</servlet-class>  
+  </servlet>  
+  <servlet-mapping>  
+  <servlet-name>s1</servlet-name>  
+  <url-pattern>/ControllerServlet</url-pattern>  
+  </servlet-mapping>  
+</web-app>  
+
+
+Create input page (index.jsp)
+
+This jsp page creates a form using struts UI tags. To use the struts UI tags, you need to specify uri /struts-tags. Here, we have used s:form to create a form, s:textfield to create a text field, s:submit to create a submit button.
+
+index.jsp
+<%@ taglib uri="/struts-tags" prefix="s" %>  
+<s:form action="product">  
+<s:textfield name="id" label="Product Id"></s:textfield>  
+<s:textfield name="name" label="Product Name"></s:textfield>  
+<s:textfield name="price" label="Product Price"></s:textfield>  
+<s:submit value="save"></s:submit>  
+</s:form>  
+3) Provide the entry of Controller in (web.xml) file
+
+In struts 2, StrutsPrepareAndExecuteFilter class works as the controller. As we know well, struts 2 uses filter for the controller. It is implicitly provided by the struts framework.
+
+web.xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<web-app>  
+  <filter>  
+  <filter-name>struts2</filter-name>  
+   <filter-class>  
+    org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter  
+   </filter-class>  
+  </filter>  
+  <filter-mapping>  
+   <filter-name>struts2</filter-name>  
+    <url-pattern>/*</url-pattern>  
+  </filter-mapping>  
+</web-app>  
+4) Create the action class (Product.java)
+
+This is simple bean class. In struts 2, action is POJO (Plain Old Java Object). It has one extra method execute i.e. invoked by struts framework by default.
+
+Product.java
+package com.javatpoint;  
+  
+public class Product {  
+private int id;  
+private String name;  
+private float price;  
+public int getId() {  
+    return id;  
+}  
+public void setId(int id) {  
+    this.id = id;  
+}  
+public String getName() {  
+    return name;  
+}  
+public void setName(String name) {  
+    this.name = name;  
+}  
+public float getPrice() {  
+    return price;  
+}  
+public void setPrice(float price) {  
+    this.price = price;  
+}  
+  
+public String execute(){  
+    return "success";  
+}  
+}  
+5) Map the request in (struts.xml) file and define the view components
+
+It is the important file from where struts framework gets information about the action and decides which result to be invoked. Here, we have used many elements such as struts, package, action and result.
+
+struts element is the root elements of this file. It represents an application.
+
+package element is the sub element of struts. It represents a module of the application. It generally extends the struts-default package where many interceptors and result types are defined.
+
+action element is the sub element of package. It represents an action to be invoked for the incoming request. It has name, class and method attributes. If you don't specify name attribute by default execute() method will be invoked for the specified action class.
+
+result element is the sub element of action. It represents an view (result) that will be invoked. Struts framework checks the string returned by the action class, if it returns success, result page for the action is invoked whose name is success or has no name. It has name and type attributes. Both are optional. If you don't specify the result name, by default success is assumed as the result name. If you don't specify the type attribute, by default dispatcher is considered as the default result type. We will learn about result types later.
+
+struts.xml
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+<package name="default" extends="struts-default">  
+  
+<action name="product" class="com.javatpoint.Product">  
+<result name="success">welcome.jsp</result>  
+</action>  
+  
+</package>  
+</struts>      
+6) Create view components (welcome.jsp)
+
+It is the view component the displays information of the action. Here, we are using struts tags to get the information.
+
+The s:property tag returns the value for the given name, stored in the action object.
+
+welcome.jsp
+<%@ taglib uri="/struts-tags" prefix="s" %>  
+  
+Product Id:<s:property value="id"/><br/>  
+Product Name:<s:property value="name"/><br/>  
+Product Price:<s:property value="price"/><br/>  
+7) Load the jar files
+
+To run this application, you need to have the struts 2 jar files. Here, we are providing all the necessary jar files for struts 2. Download it and put these jar files in the lib folder of your project.
+
+download the struts2 jar files
+8) start server and deploy the project
+
+Finally, start the server and deploy the project and access it.

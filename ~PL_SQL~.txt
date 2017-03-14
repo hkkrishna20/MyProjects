@@ -1,0 +1,321 @@
+Q1.	Write a PL/SQL program to print the numbers below 20
+ANS:
+
+SQL> SET SERVEROUTPUT ON;
+SQL> SET VERIFY OFF;
+SQL> DECLARE
+  2  X NUMBER:=1;
+  3  BEGIN
+  4  LOOP
+  5  DBMS_OUTPUT.PUT_LINE(X);
+  6  X:=X+1;
+  7  EXIT WHEN X>19;
+  8  END LOOP;
+  9  END;
+ 10  /
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+
+PL/SQL procedure successfully completed.
+
+
+Q2.	Write a PL/SQL program to print the sum of even numbers 
+	below 20
+ANS:
+
+SQL> SET SERVEROUTPUT ON;
+SQL> SET VERIFY OFF;
+SQL> DECLARE
+  2  asu NUMBER(2):=0;
+  3  su NUMBER(2):=0;
+  4  BEGIN
+  5  LOOP
+  6  su:=su+asu;
+  7  asu:=asu+2;
+  8  EXIT WHEN asu>19;
+  9  END LOOP;
+ 10  DBMS_OUTPUT.PUT_LINE('SUM='||su);
+ 11  END;
+ 12  /
+SUM=90
+
+PL/SQL procedure successfully completed.
+
+
+Q3.	Write a PL/SQL program to read two numbers and display their 
+	sum
+ANS:
+
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2  X NUMBER:=&X;
+  3  Y NUMBER:=&Y;
+  4  Z NUMBER;
+  5  BEGIN
+  6  Z:=X+Y;
+  7  DBMS_OUTPUT.PUT_LINE('SUM IS '||Z);
+  8  END;
+  9  /
+Enter value for x: 10
+old   2: X NUMBER:=&X;
+new   2: X NUMBER:=10;
+Enter value for y: 20
+old   3: Y NUMBER:=&Y;
+new   3: Y NUMBER:=20;
+SUM IS 30
+
+PL/SQL procedure successfully completed.
+
+
+Q4.	Write a PL/SQL program that reads a single digit number and 
+	displays its first three multiples in the same time
+ANS:
+
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2  X NUMBER:=&X;
+  3  I NUMBER:=1;
+  4  BEGIN
+  5  IF((X<-9)OR(X>9))
+  6  THEN
+  7  DBMS_OUTPUT.PUT_LINE('Invalid Input. Multiple digit number not allowed.
+  8  Program will now terminate.');
+  9  ELSE
+ 10  LOOP
+ 11  DBMS_OUTPUT.PUT_LINE('MULTIPLE NO '||I||'='||X*I);
+ 12  I:=I+1;
+ 13  EXIT WHEN I>3;
+ 14  END LOOP;
+ 15  END IF;
+ 16  END;
+ 17  /
+Enter value for x: 9
+old   2: X NUMBER:=&X;
+new   2: X NUMBER:=9;
+MULTIPLE NO 1=9
+MULTIPLE NO 2=18
+MULTIPLE NO 3=27
+
+PL/SQL procedure successfully completed.
+
+
+Q5.	Write a PL/SQL program to illustrate nested blocks (the outer 
+	block should calculate and display the squares of three given 
+	numbers and inner block should display the product of these 
+	given numbers)
+ANS:
+
+SQL> SET SERVEROUTPUT ON;
+SQL> SET VERIFY OFF;
+SQL> DECLARE
+  2  X NUMBER:=&X;
+  3  Y NUMBER:=&Y;
+  4  Z NUMBER:=&Z;
+  5  BEGIN
+  6  BEGIN
+  7  DBMS_OUTPUT.PUT_LINE('PRODUCT= '||X*Y*Z);
+  8  END;
+  9  DBMS_OUTPUT.PUT_LINE('X^2= '||X*X||' Y^2= '||Y*Y||' Z^2= '||Z*Z);
+ 10  END;
+ 11  /
+Enter value for x: 7
+Enter value for y: 8
+Enter value for z: 9
+PRODUCT= 504
+X^2= 49 Y^2= 64 Z^2= 81
+
+PL/SQL procedure successfully completed.
+
+
+Q6.	Write a PL/SQL program to accept a record in to existing employee 
+	table
+ANS:
+
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2  E_REC EMPLOYEE%ROWTYPE;
+  3  BEGIN
+  4  E_REC.EMPNO:=&EMPNO;
+  5  E_REC.ENAME:='&ENAME';
+  6  E_REC.JOB:='&JOB';
+  7  E_REC.MGR:='&MGR';
+  8  E_REC.HIREDATE:='&HIREDATE';
+  9  E_REC.SAL:=&SAL;
+ 10  E_REC.COMM:=&COMM;
+ 11  E_REC.DEPTNO:=&DEPTNO;
+ 12  INSERT INTO EMPLOYEE VALUES E_REC;
+ 13  END;
+ 14  /
+Enter value for empno: 9000
+old   4: E_REC.EMPNO:=&EMPNO;
+new   4: E_REC.EMPNO:=9000;
+Enter value for ename: Arya
+old   5: E_REC.ENAME:='&ENAME';
+new   5: E_REC.ENAME:='Arya';
+Enter value for job: Manager
+old   6: E_REC.JOB:='&JOB';
+new   6: E_REC.JOB:='Manager';
+Enter value for mgr: 7839
+old   7: E_REC.MGR:='&MGR';
+new   7: E_REC.MGR:='7839';
+Enter value for hiredate: 01-Jan-01
+old   8: E_REC.HIREDATE:='&HIREDATE';
+new   8: E_REC.HIREDATE:='01-Jan-01';
+Enter value for sal: 30000
+old   9: E_REC.SAL:=&SAL;
+new   9: E_REC.SAL:=30000;
+Enter value for comm: 0
+old  10: E_REC.COMM:=&COMM;
+new  10: E_REC.COMM:=0;
+Enter value for deptno: 30
+old  11: E_REC.DEPTNO:=&DEPTNO;
+new  11: E_REC.DEPTNO:=30;
+
+PL/SQL procedure successfully completed.
+
+
+Q7.	Write a PL/SQL program to access and display the record from 
+	employee table where employee number is 7839
+ANS:
+
+SQL> SET SERVEROUTPUT ON;
+SQL> SET VERIFY OFF;
+SQL> SET ECHO ON
+SQL> DECLARE
+  2  EMP_REC EMPLOYEE%ROWTYPE;
+  3  BEGIN
+  4  SELECT * INTO EMP_REC
+  5  FROM EMPLOYEE
+  6  WHERE EMPNO=7839;
+  7  DBMS_OUTPUT.PUT_LINE('EMPLOYEE NUMBER: '||EMP_REC.EMPNO);
+  8  DBMS_OUTPUT.PUT_LINE('NAME: '||EMP_REC.ENAME);
+  9  DBMS_OUTPUT.PUT_LINE('JOB: '||EMP_REC.JOB);
+ 10  DBMS_OUTPUT.PUT_LINE('MANAGER: '||EMP_REC.MGR);
+ 11  DBMS_OUTPUT.PUT_LINE('HIRED ON: '||EMP_REC.HIREDATE);
+ 12  DBMS_OUTPUT.PUT_LINE('SAL: '||EMP_REC.SAL);
+ 13  DBMS_OUTPUT.PUT_LINE('COMMISSION: '||EMP_REC.COMM);
+ 14  DBMS_OUTPUT.PUT_LINE('DEP NO: '||EMP_REC.DEPTNO);
+ 15  END;
+ 16  /
+EMPLOYEE NUMBER: 7839
+NAME: King
+JOB: President
+MANAGER:
+HIRED ON: 17-NOV-01
+SAL: 50000
+COMMISSION:
+DEP NO: 10
+
+PL/SQL procedure successfully completed.
+
+
+Q8.	Write a PL/SQL program to find the biggest among three given 
+	numbers
+ANS:
+
+SQL> SET SERVEROUTPUT ON
+SQL> DECLARE
+  2  X NUMBER;
+  3  Y NUMBER;
+  4  Z NUMBER;
+  5  BEGIN
+  6  X:=&X;
+  7  Y:=&Y;
+  8  Z:=&Z;
+  9  IF((X>=Y)AND(X>=Z))
+ 10  THEN
+ 11  DBMS_OUTPUT.PUT_LINE(X||' IS GREATEST.');
+ 12  ELSIF((Y>=X)AND(Y>=Z))
+ 13  THEN
+ 14  DBMS_OUTPUT.PUT_LINE(Y||' IS GREATEST.');
+ 15  ELSE
+ 16  DBMS_OUTPUT.PUT_LINE(Z||' IS GREATEST.');
+ 17  END IF;
+ 18  END;
+ 19  /
+Enter value for x: 10
+old   6: X:=&X;
+new   6: X:=10;
+Enter value for y: 23
+old   7: Y:=&Y;
+new   7: Y:=23;
+Enter value for z: 14
+old   8: Z:=&Z;
+new   8: Z:=14;
+23 IS GREATEST.
+
+PL/SQL procedure successfully completed.
+
+
+Q9.	Write a PL/SQL program to reverse a given number
+ANS:
+
+SQL> SET SERVEROUTPUT ON
+SQL> SET VERIFY OFF
+SQL> DECLARE
+  2  M NUMBER;
+  3  N NUMBER;
+  4  P NUMBER;
+  5  R NUMBER:=0;
+  6  BEGIN
+  7  M:=&M;
+  8  N:=M;
+  9  WHILE N!=0 LOOP
+ 10  P:=MOD(N,10);
+ 11  N:=TRUNC(N/10);
+ 12  R:=R*10+P;
+ 13  END LOOP;
+ 14  DBMS_OUTPUT.PUT_LINE('REVERSE IS= '||R);
+ 15  END;
+ 16  /
+Enter value for m: 29
+REVERSE IS= 92
+
+PL/SQL procedure successfully completed.
+
+
+Q10.	Write a PL/SQL program to display a given multiplication 
+	table
+ANS:
+
+SQL> SET SERVEROUTPUT ON
+SQL> DECLARE
+  2       N NUMBER := &N;
+  3       P NUMBER;
+  4   BEGIN
+  5       FOR I IN 1..10 LOOP
+  6        P := N * I;
+  7             DBMS_OUTPUT.PUT_LINE(N||'X'||I||'='||P);
+  8       END LOOP;
+  9  END;
+ 10  /
+Enter value for n: 8
+8X1=8
+8X2=16
+8X3=24
+8X4=32
+8X5=40
+8X6=48
+8X7=56
+8X8=64
+8X9=72
+8X10=80
+
+PL/SQL procedure successfully completed.

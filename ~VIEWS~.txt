@@ -1,0 +1,229 @@
+Q1.	Create a view to display all the details of employees
+ANS:
+
+SQL> CREATE OR REPLACE VIEW EMP_V
+  2  AS SELECT * FROM EMPLOYEE
+  3  ;
+
+View created.
+
+SQL> SELECT * FROM EMP_V;
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 King       President           17-NOV-01      50000
+        10
+
+      7698 Blake      Manager   7839      01-MAY-01      28500
+        30
+
+      7782 Clark      Manager   7839      09-JUN-01      24500
+        10
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 Jones      Manager   7839      02-APR-01      29750
+        20
+
+      7654 Martin     Salesman  7698      28-SEP-01      12500      14000
+        30
+
+      7499 Allen      Salesman  7698      20-FEB-01      16000       3000
+        30
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7844 Turner     Salesman  7698      08-FEB-01      15000          0
+        30
+
+      7900 James      Clerk     7698      03-DEC-01       9500
+        30
+
+      7521 Ward       Salesman  7698      22-FEB-01      12500       5000
+        30
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7902 Ford       Analyst   7566      03-DEC-01      30000
+
+
+      7369 Smith      Clerk     7902      17-DEC-00       8000
+
+
+      7788 Scott      Analyst   7566      09-DEC-02      30000
+        20
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7876 Adams      Clerk     7788      12-JAN-03      11000
+        20
+
+      7934 Miller     Clerk     7782      23-JAN-02      13000
+
+
+14 rows selected.
+
+
+Q2.	Create a view to display the salaries of employees before 
+	and after an increment of 15% with their names
+ANS:
+
+SQL> CREATE OR REPLACE VIEW EMP_V2
+  2  (SAL_BEFORE,SAL_AFTER)
+  3  AS SELECT SAL,SAL+SAL*0.15
+  4  FROM EMPLOYEE;
+
+View created.
+
+SQL> SELECT * FROM EMP_V2;
+
+SAL_BEFORE  SAL_AFTER
+---------- ----------
+     50000      57500
+     28500      32775
+     24500      28175
+     29750    34212.5
+     12500      14375
+     16000      18400
+     15000      17250
+      9500      10925
+     12500      14375
+     30000      34500
+      8000       9200
+
+SAL_BEFORE  SAL_AFTER
+---------- ----------
+     30000      34500
+     11000      12650
+     13000      14950
+
+14 rows selected.
+
+
+Q3.	Create a view to display the names of employees who are not 
+	managers
+ANS:
+
+SQL> CREATE OR REPLACE VIEW EMP_V3
+  2  AS SELECT ENAME "NOT_MANAGERS"
+  3  FROM EMPLOYEE
+  4  WHERE JOB<>'Manager';
+
+View created.
+
+SQL> SELECT * FROM EMP_V3;
+
+NOT_MANAGE
+----------
+King
+Martin
+Allen
+Turner
+James
+Ward
+Ford
+Smith
+Scott
+Adams
+Miller
+
+11 rows selected.
+
+
+Q4.	Create a view for displaying the names of employees who 
+	didn’t get commission
+ANS:
+
+SQL> CREATE OR REPLACE VIEW EMP_V4
+  2  AS SELECT ENAME
+  3  FROM EMPLOYEE
+  4  WHERE COMM IS NULL;
+
+View created.
+
+SQL> SELECT * FROM EMP_V4;
+
+ENAME
+----------
+King
+Blake
+Clark
+Jones
+James
+Ford
+Smith
+Scott
+Adams
+Miller
+
+10 rows selected.
+
+
+Q5.	Create a view to display the names of employees with 
+	department names
+ANS:
+
+SQL> CREATE OR REPLACE VIEW EMP_V5
+  2  AS SELECT E.ENAME,D.DNAME
+  3  FROM EMPLOYEE E NATURAL JOIN DEPARTMENT D;
+
+View created.
+
+SQL> SELECT * FROM EMP_V5;
+
+ENAME      DNAME
+---------- ---------------
+King       Accounting
+Blake      Sales
+Clark      Accounting
+Jones      Research
+Martin     Sales
+Allen      Sales
+Turner     Sales
+James      Sales
+Ward       Sales
+Scott      Research
+Adams      Research
+
+11 rows selected.
+
+
+Q6.	Create a view to display the name, job, sal, hiredate of 
+	employees whose sal is between 10000 and 20000 in ascending 
+	order of their hiredate 
+ANS:
+
+SQL> CREATE OR REPLACE VIEW EMP_V6
+  2  AS SELECT ENAME,JOB,SAL,HIREDATE
+  3  FROM EMPLOYEE
+  4  WHERE SAL BETWEEN 10000 AND 20000
+  5  ORDER BY HIREDATE ASC;
+
+View created.
+
+SQL> SELECT * FROM EMP_V6;
+
+ENAME      JOB                         SAL HIREDATE
+---------- -------------------- ---------- ---------
+Turner     Salesman                  15000 08-FEB-01
+Allen      Salesman                  16000 20-FEB-01
+Ward       Salesman                  12500 22-FEB-01
+Martin     Salesman                  12500 28-SEP-01
+Miller     Clerk                     13000 23-JAN-02
+Adams      Clerk                     11000 12-JAN-03
+
+6 rows selected.

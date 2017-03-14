@@ -1,0 +1,26 @@
+<TABLE BORDER="1">
+        <TR>
+            <TH>ID</TH>
+            <TH>Name</TH>
+            <TH>Address</TH>
+            <TH>Update</TH>
+            <TH>Delete</TH>
+        </TR>
+        <% while(resultset.next()){ %>
+
+        <TR>
+            <TD> <%= resultset.getString(1) %></td>
+            <TD> <%= resultset.getString(2) %></TD>
+            <TD> <%= resultset.getString(3) %></TD>
+            <TD> <a href="update.jsp?id=<%=resultset.getString(1) %>">Update</a> </td>
+            <TD> <a href="del.jsp?id=<%=resultset.getString(1) %>">Delete</a> </TD>
+        </TR>
+        <% } %>
+    </TABLE>
+	
+	
+	https://www.youtube.com/watch?v=11iGyrvBhzc
+https://www.youtube.com/watch?v=cxf0toqlvbg
+
+https://www.youtube.com/watch?v=Vt97IU7xNJs
+https://www.youtube.com/watch?v=11iGyrvBhzc

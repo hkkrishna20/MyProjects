@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+   .ui-menu 
+        {
+            width: 150px;
+        }
+    </style>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="http:/resources/demos/style.css"/>
+    <script>
+        $(document).ready(function () {
+            $("#menu").menu();
+        });
+</script>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+      <ul id="menu">
+        <li>UI
+            <ul>
+                <li>Html</li>
+                <li>JavaScript</li>
+                <li>Jquery</li>
+                <li>Angular JS</li>
+                <li>Bootstrap</li>
+            </ul>
+        </li>
+        <li>Database
+            <ul>
+                <li>SQL Server</li>
+                <li>Oracle</li>
+                <li>Sybase</li>
+            </ul>
+        </li>
+        <li>SAP</li>
+        <li>Programming Languages
+            <ul>
+                <li>Dotnet
+                    <ul>
+                        <li>C#</li>
+                        <li>VB</li>
+                        <li>ASP.NET</li>
+                        <li>WCF</li>
+                    </ul>
+                </li>
+                <li>Java</li>
+                <li>Pascal</li>
+            </ul>
+        </li>
+        <li>DatawareHouse
+            <ul>
+                <li class="ui-state-disabled">Informatica</li>
+                <li>Cognos</li>
+                <li>Tablew</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

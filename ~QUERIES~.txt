@@ -1,0 +1,1342 @@
+Q1.	Create the above three tables with the given constraints and 
+	insert values as provided
+ANS:
+
+SQL> create table EMPLOYEE
+  2  (EMPNO number(4) primary key,ENAME varchar2(10)
+  3  ,JOB varchar2(9) not null,MGR varchar2(9),HIREDATE date,
+  4  SAL number(7,2),COMM number(7,2),DEPTNO number(2));
+
+Table created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&hdate',&sa,&dno);
+Enter value for eno: 7839
+Enter value for ena: King
+Enter value for jo: President
+Enter value for hdate: 17-Nov-01
+Enter value for sa: 50000
+Enter value for dno: 10
+old   3:  values(&eno,'&ena','&jo','&hdate',&sa,&dno)
+new   3:  values(7839,'King','President','17-Nov-01',50000,10)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7698
+Enter value for ena: Blake
+Enter value for jo: Manager
+Enter value for mg: 7839
+Enter value for hdate: 01-May-01
+Enter value for sa: 28500
+Enter value for dno: 30
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno)
+new   3:  values(7698,'Blake','Manager','7839','01-May-01',28500,30)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7782
+Enter value for ena: Clark
+Enter value for jo: Manager
+Enter value for mg: 7839
+Enter value for hdate: 09-Jun-01
+Enter value for sa: 24500
+Enter value for dno: 10
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno)
+new   3:  values(7782,'Clark','Manager','7839','09-Jun-01',24500,10)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7566
+Enter value for ena: Jones
+Enter value for jo: Manager
+Enter value for mg: 7839
+Enter value for hdate: 02-Apr-01
+Enter value for sa: 29750
+Enter value for dno: 20
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno)
+new   3:  values(7566,'Jones','Manager','7839','02-Apr-01',29750,20)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno);
+Enter value for eno: 7654
+Enter value for ena: Martin
+Enter value for jo: Salesman
+Enter value for mg: 7698
+Enter value for hdate: 28-Sep-01
+Enter value for sa: 12500
+Enter value for com: 14000
+Enter value for dno: 30
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno)
+new   3:  values(7654,'Martin','Salesman','7698','28-Sep-01',12500,14000,30)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno);
+Enter value for eno: 7499
+Enter value for ena: Allen
+Enter value for jo: Salesman
+Enter value for mg: 7698
+Enter value for hdate: 20-Feb-01
+Enter value for sa: 16000
+Enter value for com: 3000
+Enter value for dno: 30
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno)
+new   3:  values(7499,'Allen','Salesman','7698','20-Feb-01',16000,3000,30)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno);
+Enter value for eno: 7844
+Enter value for ena: Turner
+Enter value for jo: Salesman
+Enter value for mg: 7698
+Enter value for hdate: 08-Feb-01
+Enter value for sa: 15000
+Enter value for com: 0
+Enter value for dno: 30
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno)
+new   3:  values(7844,'Turner','Salesman','7698','08-Feb-01',15000,0,30)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7900
+Enter value for ena: James
+Enter value for jo: Clerk
+Enter value for mg: 7698
+Enter value for hdate: 03-Dec-01
+Enter value for sa: 9500
+Enter value for dno: 30
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno)
+new   3:  values(7900,'James','Clerk','7698','03-Dec-01',9500,30)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno);
+Enter value for eno: 7521
+Enter value for ena: Ward
+Enter value for jo: Salesman
+Enter value for mg: 7698
+Enter value for hdate: 22-Feb-01
+Enter value for sa: 12500
+Enter value for com: 5000
+Enter value for dno: 30
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&com,&dno)
+new   3:  values(7521,'Ward','Salesman','7698','22-Feb-01',12500,5000,30)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7902
+Enter value for ena: Ford
+Enter value for jo: Analyst
+Enter value for mg: 7566
+Enter value for hdate: 03-Dec-01
+Enter value for sa: 30000
+Enter value for dno: NULL
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno)
+new   3:  values(7902,'Ford','Analyst','7566','03-Dec-01',30000,NULL)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7369
+Enter value for ena: Smith
+Enter value for jo: Clerk
+Enter value for mg: 7902
+Enter value for hdate: 17-Dec-00
+Enter value for sa: 8000
+Enter value for dno: NULL
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno)
+new   3:  values(7369,'Smith','Clerk','7902','17-Dec-00',8000,NULL)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7788
+Enter value for ena: Scott
+Enter value for jo: Analyst
+Enter value for mg: 7566
+Enter value for hdate: 09-Dec-02
+Enter value for sa: 30000
+Enter value for dno: 20
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno)
+new   3:  values(7788,'Scott','Analyst','7566','09-Dec-02',30000,20)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7876
+Enter value for ena: Adams
+Enter value for jo: Clerk
+Enter value for mg: 7788
+Enter value for hdate: 12-Jan-03
+Enter value for sa: 11000
+Enter value for dno: 20
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno)
+new   3:  values(7876,'Adams','Clerk','7788','12-Jan-03',11000,20)
+
+1 row created.
+
+SQL> insert into EMPLOYEE
+  2   (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+  3   values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno);
+Enter value for eno: 7934
+Enter value for ena: Miller
+Enter value for jo: Clerk
+Enter value for mg: 7782
+Enter value for hdate: 23-Jan-02
+Enter value for sa: 13000
+Enter value for dno: NULL
+old   3:  values(&eno,'&ena','&jo','&mg','&hdate',&sa,&dno)
+new   3:  values(7934,'Miller','Clerk','7782','23-Jan-02',13000,NULL)
+
+1 row created.
+
+SQL> create table DEPARTMENT
+  2  (DEPTNO number(2) not null,DNAME varchar2(15),LOC varchar2(15));
+
+Table created.
+
+SQL> insert into DEPARTMENT
+  2  values(&dno,'&dna','&lo');
+Enter value for dno: 10
+Enter value for dna: Accounting
+Enter value for lo: New Delhi
+old   2: values(&dno,'&dna','&lo')
+new   2: values(10,'Accounting','New Delhi')
+
+1 row created.
+
+SQL> insert into DEPARTMENT
+  2  values(&dno,'&dna','&lo');
+Enter value for dno: 20
+Enter value for dna: Research
+Enter value for lo: Bombay
+old   2: values(&dno,'&dna','&lo')
+new   2: values(20,'Research','Bombay')
+
+1 row created.
+
+SQL> insert into DEPARTMENT
+  2  values(&dno,'&dna','&lo');
+Enter value for dno: 30
+Enter value for dna: Sales
+Enter value for lo: Chennai
+old   2: values(&dno,'&dna','&lo')
+new   2: values(30,'Sales','Chennai')
+
+1 row created.
+
+SQL> insert into DEPARTMENT
+  2  values(&dno,'&dna','&lo');
+Enter value for dno: 40
+Enter value for dna: Operation
+Enter value for lo: Kolkatta
+old   2: values(&dno,'&dna','&lo')
+new   2: values(40,'Operation','Kolkatta')
+
+1 row created.
+
+SQL> create table SALARYGRADE
+  2  (GRADE number(1),LOSAL number(7,2),HISAL number(7,2));
+
+Table created.
+
+SQL> insert into SALARYGRADE
+  2  values(&gr,&lo,&hi);
+Enter value for gr: 1
+Enter value for lo: 7000
+Enter value for hi: 12000
+old   2: values(&gr,&lo,&hi)
+new   2: values(1,7000,12000)
+
+1 row created.
+
+SQL>  insert into SALARYGRADE
+  2   values(&gr,&lo,&hi);
+Enter value for gr: 2
+Enter value for lo: 12001
+Enter value for hi: 14000
+old   2:  values(&gr,&lo,&hi)
+new   2:  values(2,12001,14000)
+
+1 row created.
+
+SQL>  insert into SALARYGRADE
+  2   values(&gr,&lo,&hi);
+Enter value for gr: 3
+Enter value for lo: 14001
+Enter value for hi: 20000
+old   2:  values(&gr,&lo,&hi)
+new   2:  values(3,14001,20000)
+
+1 row created.
+
+SQL>  insert into SALARYGRADE
+  2   values(&gr,&lo,&hi);
+Enter value for gr: 4
+Enter value for lo: 20001
+Enter value for hi: 30000
+old   2:  values(&gr,&lo,&hi)
+new   2:  values(4,20001,30000)
+
+1 row created.
+
+SQL>  insert into SALARYGRADE
+  2   values(&gr,&lo,&hi);
+Enter value for gr: 5
+Enter value for lo: 30001
+Enter value for hi: 99999
+old   2:  values(&gr,&lo,&hi)
+new   2:  values(5,30001,99999)
+
+1 row created.
+
+
+Q2.	WAQ to display Employee Number, Job, Sal from Employee Table
+ANS:
+
+SQL> select EMPNO "Employee Number",JOB "Job",SAL "Sal" from EMPLOYEE;
+
+Employee Number Job              Sal
+--------------- --------- ----------
+           7839 President      50000
+           7698 Manager        28500
+           7782 Manager        24500
+           7566 Manager        29750
+           7654 Salesman       12500
+           7499 Salesman       16000
+           7844 Salesman       15000
+           7900 Clerk           9500
+           7521 Salesman       12500
+           7902 Analyst        30000
+           7369 Clerk           8000
+
+Employee Number Job              Sal
+--------------- --------- ----------
+           7788 Analyst        30000
+           7876 Clerk          11000
+           7934 Clerk          13000
+
+14 rows selected.
+
+
+Q3.	WAQ to display all the details of the Employees
+ANS:
+
+SQL> select * from EMPLOYEE;
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 King       President           17-NOV-01      50000
+        10
+
+      7698 Blake      Manager   7839      01-MAY-01      28500
+        30
+
+      7782 Clark      Manager   7839      09-JUN-01      24500
+        10
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 Jones      Manager   7839      02-APR-01      29750
+        20
+
+      7654 Martin     Salesman  7698      28-SEP-01      12500      14000
+        30
+
+      7499 Allen      Salesman  7698      20-FEB-01      16000       3000
+        30
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7844 Turner     Salesman  7698      08-FEB-01      15000          0
+        30
+
+      7900 James      Clerk     7698      03-DEC-01       9500
+	30
+
+      7521 Ward       Salesman  7698      22-FEB-01      12500       5000
+        30
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7902 Ford       Analyst   7566      03-DEC-01      30000
+
+
+      7369 Smith      Clerk     7902      17-DEC-00       8000
+
+
+      7788 Scott      Analyst   7566      09-DEC-02      30000
+        20
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7876 Adams      Clerk     7788      12-JAN-03      11000
+        20
+
+      7934 Miller     Clerk     7782      23-JAN-02      13000
+
+
+
+14 rows selected.
+
+
+Q4.	WAQ to display distinct Jobs of the Employees
+ANS:
+
+SQL> select distinct JOB from EMPLOYEE;
+
+JOB
+---------
+Manager
+Clerk
+Analyst
+President
+Salesman
+
+
+Q5.	WAQ to display all Jobs of Employees using ‘ALL’ keyword
+ANS:
+
+SQL> select all JOB from EMPLOYEE;
+
+JOB
+---------
+President
+Manager
+Manager
+Manager
+Salesman
+Salesman
+Salesman
+Clerk
+Salesman
+Analyst
+Clerk
+
+JOB
+---------
+Analyst
+Clerk
+Clerk
+
+14 rows selected.
+
+
+Q6.	WAQ to display the Names, Numbers and Salaries added with their 
+	commissions from Employees Table
+ANS:
+
+SQL> select ENAME "Names",EMPNO "Numbers", SAL+nvl(COMM,0) "Salary+Commission"
+  2  from EMPLOYEE;
+
+Names         Numbers Salary+Commission
+---------- ---------- -----------------
+King             7839             50000
+Blake            7698             28500
+Clark            7782             24500
+Jones            7566             29750
+Martin           7654             26500
+Allen            7499             19000
+Turner           7844             15000
+James            7900              9500
+Ward             7521             17500
+Ford             7902             30000
+Smith            7369              8000
+
+Names         Numbers Salary+Commission
+---------- ---------- -----------------
+Scott            7788             30000
+Adams            7876             11000
+Miller           7934             13000
+
+14 rows selected.
+
+
+Q7.	Show the structure of the three relations
+ANS:
+
+SQL> desc EMPLOYEE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                       NOT NULL VARCHAR2(9)
+ MGR                                                VARCHAR2(9)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> desc DEPARTMENT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ DEPTNO                                    NOT NULL NUMBER(2)
+ DNAME                                              VARCHAR2(15)
+ LOC                                                VARCHAR2(15)
+
+SQL> desc SALARYGRADE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ GRADE                                              NUMBER(1)
+ LOSAL                                              NUMBER(7,2)
+ HISAL                                              NUMBER(7,2)
+
+
+Q8.	Display the Salaries of the Employees before and after an increment of 
+	15 % with their names
+ANS:	
+
+
+SQL> select ENAME "Emp Name",SAL "Salary(Initial)",
+  2  1.15*SAL "Salary(after 15% Increase)" from EMPLOYEE;
+
+Emp Name   Salary(Initial) Salary(after 15% Increase)
+---------- --------------- --------------------------
+King                 50000                      57500
+Blake                28500                      32775
+Clark                24500                      28175
+Jones                29750                    34212.5
+Martin               12500                      14375
+Allen                16000                      18400
+Turner               15000                      17250
+James                 9500                      10925
+Ward                 12500                      14375
+Ford                 30000                      34500
+Smith                 8000                       9200
+
+Employee N Salary(Initial) Salary(after 15% Increase)
+---------- --------------- --------------------------
+Scott                30000                      34500
+Adams                11000                      12650
+Miller               13000                      14950
+
+14 rows selected.
+
+
+Q9.	WAQ to display the annual salary of Employees with their names and 
+	numbers
+ANS:
+
+SQL> select EMPNO "Employee Number",ENAME "Emp Name",
+  2  SAL*12 "Annual Salary" from EMPLOYEE;
+
+Employee Number Emp Name   Annual Salary
+--------------- ---------- -------------
+           7839 King              600000
+           7698 Blake             342000
+           7782 Clark             294000
+           7566 Jones             357000
+           7654 Martin            150000
+           7499 Allen             192000
+           7844 Turner            180000
+           7900 James             114000
+           7521 Ward              150000
+           7902 Ford              360000
+           7369 Smith              96000
+
+Employee Number Employee N Annual Salary
+--------------- ---------- -------------
+           7788 Scott             360000
+           7876 Adams             132000
+           7934 Miller            156000
+
+14 rows selected.
+
+
+Q10.	WAQ to display the details of the employees and default values 
+	(In place of Null values of commission use nvl function to show 0 )
+ANS:
+
+SQL> select EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,nvl(COMM,0) "COMM",DEPTNO
+  2  from EMPLOYEE;
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 King       President           17-NOV-01      50000          0
+        10
+
+      7698 Blake      Manager   7839      01-MAY-01      28500          0
+        30
+
+      7782 Clark      Manager   7839      09-JUN-01      24500          0
+        10
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 Jones      Manager   7839      02-APR-01      29750          0
+        20
+
+      7654 Martin     Salesman  7698      28-SEP-01      12500      14000
+        30
+
+      7499 Allen      Salesman  7698      20-FEB-01      16000       3000
+        30
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7844 Turner     Salesman  7698      08-FEB-01      15000          0
+        30
+
+      7900 James      Clerk     7698      03-DEC-01       9500          0
+	30
+
+      7521 Ward       Salesman  7698      22-FEB-01      12500       5000
+        30
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7902 Ford       Analyst   7566      03-DEC-01      30000          0
+
+
+      7369 Smith      Clerk     7902      17-DEC-00       8000          0
+
+
+      7788 Scott      Analyst   7566      09-DEC-02      30000          0
+        20
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7876 Adams      Clerk     7788      12-JAN-03      11000          0
+        20
+
+      7934 Miller     Clerk     7782      23-JAN-02      13000          0
+
+
+
+14 rows selected.
+
+
+Q11.	WAQ to display the details of Employees in the following format. 
+	“JOHN WORKS AS MANAGER AND GETS RS 10000 EVERY MONTH”
+ANS:
+
+SQL> select upper(ENAME)||' WORKS AS '||upper(JOB)||' AND GETS RS '||
+  2  SAL||' EVERY MONTH' "EMPLOYEE DETAILS" from EMPLOYEE;
+
+EMPLOYEE DETAILS
+--------------------------------------------------------------------------------
+
+KING WORKS AS PRESIDENT AND GETS RS 50000 EVERY MONTH
+BLAKE WORKS AS MANAGER AND GETS RS 28500 EVERY MONTH
+CLARK WORKS AS MANAGER AND GETS RS 24500 EVERY MONTH
+JONES WORKS AS MANAGER AND GETS RS 29750 EVERY MONTH
+MARTIN WORKS AS SALESMAN AND GETS RS 12500 EVERY MONTH
+ALLEN WORKS AS SALESMAN AND GETS RS 16000 EVERY MONTH
+TURNER WORKS AS SALESMAN AND GETS RS 15000 EVERY MONTH
+JAMES WORKS AS CLERK AND GETS RS 9500 EVERY MONTH
+WARD WORKS AS SALESMAN AND GETS RS 12500 EVERY MONTH
+FORD WORKS AS ANALYST AND GETS RS 30000 EVERY MONTH
+SMITH WORKS AS CLERK AND GETS RS 8000 EVERY MONTH
+
+EMPLOYEE DETAILS
+--------------------------------------------------------------------------------
+
+SCOTT WORKS AS ANALYST AND GETS RS 30000 EVERY MONTH
+ADAMS WORKS AS CLERK AND GETS RS 11000 EVERY MONTH
+MILLER WORKS AS CLERK AND GETS RS 13000 EVERY MONTH
+
+14 rows selected.
+
+
+Q12.	WAQ to display the ename joined with the Job using || operator
+ANS:
+
+SQL> select ENAME||' '||JOB "Name joined with Job"
+  2  from EMPLOYEE;
+
+Name joined with Job
+--------------------
+King President
+Blake Manager
+Clark Manager
+Jones Manager
+Martin Salesman
+Allen Salesman
+Turner Salesman
+James Clerk
+Ward Salesman
+Ford Analyst
+Smith Clerk
+
+Name joined with Job
+--------------------
+Scott Analyst
+Adams Clerk
+Miller Clerk
+
+14 rows selected.
+
+
+Q13.	Display the names of employees having salary > 13000
+ANS:
+
+SQL> select ENAME from EMPLOYEE where SAL>13000;
+
+ENAME
+----------
+King
+Blake
+Clark
+Jones
+Allen
+Turner
+Ford
+Scott
+
+8 rows selected.
+
+
+Q14.	Give a query to display the names of employees who are not Managers
+ANS:
+
+SQL> select ENAME from EMPLOYEE where JOB!='Manager';
+
+ENAME
+----------
+King
+Martin
+Allen
+Turner
+James
+Ward
+Ford
+Smith
+Scott
+Adams
+Miller
+
+11 rows selected.
+
+
+Q15.	WAQ to display the names of Employees who are managers or analysts or 
+	clerk using IN operator
+ANS:
+
+SQL> select ENAME from EMPLOYEE where JOB in('Manager','Analyst','Clerk');
+
+ENAME
+----------
+Blake
+Clark
+Jones
+James
+Ford
+Smith
+Scott
+Adams
+Miller
+
+9 rows selected.
+
+
+Q16.	WAQ to display the names of employees who didn’t get any commission
+ANS:
+
+SQL> select ENAME from EMPLOYEE where COMM IS NULL;
+
+ENAME
+----------
+King
+Blake
+Clark
+Jones
+James
+Ford
+Smith
+Scott
+Adams
+Miller
+
+10 rows selected.
+
+
+Q17.	WAQ to display the names, salaries and commission of employees who don’t 
+	get commission
+ANS:
+
+SQL> select ENAME,SAL,nvl(COMM,0) "COMM" from EMPLOYEE
+  2  where COMM IS NULL;
+
+ENAME             SAL       COMM
+---------- ---------- ----------
+King            50000          0
+Blake           28500          0
+Clark           24500          0
+Jones           29750          0
+James            9500          0
+Ford            30000          0
+Smith            8000          0
+Scott           30000          0
+Adams           11000          0
+Miller          13000          0
+
+10 rows selected.
+
+
+Q18.	Select the names of employees whose salary is between 15000 and 20000
+ANS:
+
+SQL> select ENAME,SAL,COMM from EMPLOYEE where SAL
+  2  between 15000 and 20000;
+
+ENAME             SAL       COMM
+---------- ---------- ----------
+Allen           16000       3000
+Turner          15000          0
+
+
+Q19.	WAQ to display the names of employees with their department names
+ANS:
+
+SQL> select e.ENAME,d.DNAME
+  2  from EMPLOYEE e natural join DEPARTMENT d;
+
+ENAME      DNAME
+---------- ---------------
+King       Accounting
+Blake      Sales
+Clark      Accounting
+Jones      Research
+Martin     Sales
+Allen      Sales
+Turner     Sales
+James      Sales
+Ward       Sales
+Scott      Research
+Adams      Research
+
+11 rows selected.
+
+
+Q20.	WAQ to display the names of employees with their salary grades
+ANS:
+
+SQL> select E.ENAME,S.GRADE
+  2  from EMPLOYEE E JOIN SALARYGRADE S
+  3  on E.SAL between S.LOSAL and S.HISAL;
+
+ENAME           GRADE
+---------- ----------
+Smith               1
+James               1
+Adams               1
+Ward                2
+Martin              2
+Miller              2
+Turner              3
+Allen               3
+Clark               4
+Blake               4
+Jones               4
+
+ENAME           GRADE
+---------- ----------
+Ford                4
+Scott               4
+King                5
+
+14 rows selected.
+
+
+Q21.	Display the names of employees whose name starts with ‘S’
+ANS:
+
+SQL> select ENAME from EMPLOYEE where ENAME like 'S%';
+
+ENAME
+----------
+Smith
+Scott
+
+
+Q22.	Display the names of employees whose name ends with ‘D’
+ANS:
+
+SQL> select ENAME from EMPLOYEE where ENAME like '%D';
+
+no rows selected
+
+
+Q23.	Display the names of employees whose name holds the character ‘O’ in 
+	any place
+ANS:
+
+SQL> select ENAME from EMPLOYEE where ENAME
+  2  like 'O%' or ENAME like '%O%' or ENAME like '%O';
+
+no rows selected
+
+Q24.	WAQ to display the names of employees in the order of their salary 
+	ascending and descending separately
+ANS:
+
+SQL> select ENAME,SAL from EMPLOYEE
+  2  order by SAL asc;
+
+ENAME             SAL
+---------- ----------
+Smith            8000
+James            9500
+Adams           11000
+Ward            12500
+Martin          12500
+Miller          13000
+Turner          15000
+Allen           16000
+Clark           24500
+Blake           28500
+Jones           29750
+
+ENAME             SAL
+---------- ----------
+Ford            30000
+Scott           30000
+King            50000
+
+14 rows selected.
+
+SQL> select ENAME,SAL from EMPLOYEE
+  2  order by SAL desc;
+
+ENAME             SAL
+---------- ----------
+King            50000
+Scott           30000
+Ford            30000
+Jones           29750
+Blake           28500
+Clark           24500
+Allen           16000
+Turner          15000
+Miller          13000
+Ward            12500
+Martin          12500
+
+ENAME             SAL
+---------- ----------
+Adams           11000
+James            9500
+Smith            8000
+
+14 rows selected.
+
+
+Q25.	Give a query to display the names of employees whose name has 
+	only four characters
+ANS:
+
+SQL> select ENAME from EMPLOYEE
+  2  where length(ENAME)=4;
+
+ENAME
+----------
+King
+Ward
+Ford
+
+
+Q26.	WAQ to display the name, job, salary and hiredate of employees where 
+	salary is between 10000 and 20000 in ascending order of their hiredate
+ANS:
+
+SQL> select ENAME,JOB,SAL,HIREDATE from EMPLOYEE
+  2  where SAL between 10000 and 20000
+  3  order by HIREDATE;
+
+ENAME      JOB              SAL HIREDATE
+---------- --------- ---------- ---------
+Turner     Salesman       15000 08-FEB-01
+Allen      Salesman       16000 20-FEB-01
+Ward       Salesman       12500 22-FEB-01
+Martin     Salesman       12500 28-SEP-01
+Miller     Clerk          13000 23-JAN-02
+Adams      Clerk          11000 12-JAN-03
+
+6 rows selected.
+
+
+Q27.	WAQ to display the names of employees concatenated with their job and
+	use alias by “NameJob” and sort them using the alias name in 
+	descending order
+ANS:
+
+SQL> select ENAME||JOB "NameJob" from EMPLOYEE
+  2  order by ENAME||JOB desc;
+
+NameJob
+-------------------
+WardSalesman
+TurnerSalesman
+SmithClerk
+ScottAnalyst
+MillerClerk
+MartinSalesman
+KingPresident
+JonesManager
+JamesClerk
+FordAnalyst
+ClarkManager
+
+NameJob
+-------------------
+BlakeManager
+AllenSalesman
+AdamsClerk
+
+14 rows selected.
+
+
+Q28.	Display the names, number, job, salary of employees who do not have 
+	manager
+ANS:
+
+SQL> select ENAME,EMPNO,JOB,SAL from EMPLOYEE
+  2  where MGR IS NULL;
+
+ENAME           EMPNO JOB              SAL
+---------- ---------- --------- ----------
+King             7839 President      50000
+
+
+Q29.	Write a query to perform a calculation of the expression           
+	4 * 5 + 6 / 2
+ANS:
+
+SQL> select 4*5+6/2 from DUAL;
+
+   4*5+6/2
+----------
+        23
+
+
+Q30.	Display today’s Date
+ANS:
+
+SQL> select SYSDATE "Date"
+  2  from DUAL;
+
+Date
+---------
+05-APR-10
+
+
+Q31.	Display the remaining days of this month
+ANS:
+
+
+Q32.	WAQ to display the sum, average, standard deviation, variance, 
+	no. of records, minimum, maximum of salary in employee table using alias
+ANS:
+
+SQL> select sum(sal) "Sum",avg(sal) "Average",avg(sal*sal)-(avg(sal)*avg(sal)) "
+Variance",sqrt(avg(sal*sal)-(avg(sal)*avg(sal))) "Stand Dev",count(empno) "No of
+ records",min(sal) "Min Salary",max(sal) "Max Salary" from employee;
+
+       Sum    Average   Variance  Stand Dev No of records Min Salary Max Salary
+---------- ---------- ---------- ---------- ------------- ---------- ----------
+    290250 20732.1429  129843431 11394.8862            14       8000      50000
+
+
+Q33.	Display the minimum and maximum salary in each job
+ANS:
+
+SQL> select JOB,min(SAL) "Min Sal",max(SAL) "Max Sal" from employee
+  2  group by job;
+
+JOB          Min Sal    Max Sal
+--------- ---------- ----------
+Manager        24500      29750
+Clerk           8000      13000
+Analyst        30000      30000
+President      50000      50000
+Salesman       12500      16000
+
+
+Q34.	Display the no. of employees in each department in ascending order
+	of the count of the employees
+ANS:
+
+SQL> select DEPTNO,count(EMPNO) "No of Emploees"
+  2  from employee where DEPTNO IS NOT NULL
+  3  group by DEPTNO
+  4  order by DEPTNO;
+
+    DEPTNO No of Emploees
+---------- --------------
+        10              2
+        20              3
+        30              6
+
+
+Q35.	Display the no. of employees job wise within department wise
+ANS:
+
+SQL> select DEPTNO,JOB,count(EMPNO)
+  2  from EMPLOYEE where DEPTNO IS NOT NULL
+  3  group by DEPTNO,JOB
+  4  order by DEPTNO,JOB;
+
+    DEPTNO JOB       COUNT(EMPNO)
+---------- --------- ------------
+        10 Manager              1
+        10 President            1
+        20 Analyst              1
+        20 Clerk                1
+        20 Manager              1
+        30 Clerk                1
+        30 Manager              1
+        30 Salesman             4
+
+8 rows selected.
+
+
+Q36.	Show the number of managers in each department
+ANS:
+
+SQL> select DEPTNO,count(JOB) "Manager"
+  2  from EMPLOYEE where JOB='Manager'
+  3  group by DEPTNO
+  4  order by DEPTNO;
+
+    DEPTNO    Manager
+---------- ----------
+        10          1
+        20          1
+        30          1
+
+
+Q37.	Display the names of departments which consist more than 4 employees
+ANS:
+
+SQL> select D.DNAME
+  2  from EMPLOYEE E natural join DEPARTMENT D
+  3  group by D.DNAME
+  4  having count(E.EMPNO)>4;
+
+DNAME
+---------------
+Sales
+
+
+Q38.	WAQ to display the department number and salary difference in each 
+	department where department is not 40 and difference is > 5000 (show 
+	in ascending order of the difference)
+ANS:
+
+SQL> select DEPTNO,max(SAL)-min(SAL) "Salary Difference"
+  2  from EMPLOYEE group by DEPTNO
+  3  having (max(SAL)-min(SAL))>5000 and DEPTNO!=40
+  4  order by max(SAL)-min(SAL) asc;
+
+    DEPTNO Salary Difference
+---------- -----------------
+        30             19000
+
+        20             19000
+        10             25500
+
+
+Q39.	Show which positions are paid a higher than average salary
+ANS:
+
+SQL> select ENAME from EMPLOYEE
+  2  where SAL>(select avg(SAL) from EMPLOYEE);
+
+ENAME
+----------
+King
+Blake
+Clark
+Jones
+Ford
+Scott
+
+6 rows selected.
+
+
+Q40.	Select second maximum salary from employee
+ANS:
+
+SQL> select distinct SAL from EMPLOYEE
+  2  where SAL=(select max(SAL) from EMPLOYEE where SAL<
+  3  (select max(SAL) from EMPLOYEE));
+
+       SAL
+----------
+     30000
+
+
+Q41.	Select the 4th minimum salary from employee
+ANS:
+
+SQL> select distinct SAL from EMPLOYEE
+  2  where SAL=(select min(SAL) from EMPLOYEE where SAL>
+  3  (select min(SAL) from EMPLOYEE where SAL>
+  4  (select min(SAL) from EMPLOYEE where SAL>
+  5  (select min(SAL) from EMPLOYEE))));
+
+       SAL
+----------
+     12500
+
+
+Q42.	Select the name of employees who are getting minimum salary in 
+	employee table
+ANS:	
+
+SQL> select ENAME from EMPLOYEE
+  2  where SAL=all(select min(SAL) from EMPLOYEE);
+
+ENAME
+----------
+Smith
+
+
+Q43.	Select the names of employees who are getting maximum salary in each 
+	department
+ANS:
+
+SQL> select ENAME from EMPLOYEE
+  2  where SAL in(select max(SAL)from EMPLOYEE group by DEPTNO);
+
+ENAME
+----------
+King
+Blake
+Ford
+Scott
+
+
+Q44.	Show details of those employees that have salary equal to any employees 
+	of department
+ANS:
+
+SQL> select E.EMPNO,E.ENAME,E.JOB,E.MGR,E.HIREDATE,E.COMM,E.SAL,E.DEPTNO
+  2  from EMPLOYEE E,EMPLOYEE D
+  3  where E.EMPNO!=D.EMPNO
+  4  and E.SAL=D.SAL and E.DEPTNO=D.DEPTNO;
+
+     EMPNO ENAME      JOB       MGR       HIREDATE        COMM        SAL
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7521 Ward       Salesman  7698      22-FEB-01       5000      12500
+        30
+
+      7654 Martin     Salesman  7698      28-SEP-01      14000      12500
+        30
+
+
+Q45.	Show details of those employee that have salary more than or equal to 
+	average salary
+ANS:
+
+SQL> select * from EMPLOYEE
+  2  where SAL in(select SAL from EMPLOYEE where SAL>=
+  3  (select avg(SAL) from EMPLOYEE));
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 King       President           17-NOV-01      50000
+        10
+
+      7698 Blake      Manager   7839      01-MAY-01      28500
+        30
+
+      7782 Clark      Manager   7839      09-JUN-01      24500
+        10
+
+
+     EMPNO ENAME      JOB       MGR       HIREDATE         SAL       COMM
+---------- ---------- --------- --------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 Jones      Manager   7839      02-APR-01      29750
+        20
+
+      7902 Ford       Analyst   7566      03-DEC-01      30000
+
+
+      7788 Scott      Analyst   7566      09-DEC-02      30000
+        20
+
+
+6 rows selected.
+
+
+Q46.	Select the details of departments that have at least one employee
+ANS:
+
+SQL> select distinct(DEPTNO),DNAME,LOC
+  2  from EMPLOYEE natural join DEPARTMENT;
+
+    DEPTNO DNAME           LOC
+---------- --------------- ---------------
+        10 Accounting      New Delhi
+        30 Sales           Chennai
+        20 Research        Bombay

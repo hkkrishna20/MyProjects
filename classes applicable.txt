@@ -1,0 +1,33 @@
+public private protected default 
+final syncronized transient native
+abstract static strictfp volatile
+
+
+1. applicable for classes 
+            outer classes 
+			(Applicable)				public default abstract final strictfp
+			
+			inner classes
+			()Applicable)               public default abstract final strictfp  protected private static 
+			
+2. applicable for methods or not
+									Leaving Transient and volatile all are applicable
+			
+3. applicable for variables
+			                        abstract  syncronized strictfp native variable 
+			
+4. applicable for blocks
+									static and syncronized are applicable
+			
+5. applicable for interfaces
+            outer interfaces		final not applicable
+			inner interfaces        
+			
+6. applicable for enums or not
+			outer enums
+			inner enums
+7. applicable for constructors or not
+
+			When life gets too strange,
+too impossible, too frightening,
+there is always one last hope.

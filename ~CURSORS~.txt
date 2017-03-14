@@ -1,0 +1,290 @@
+Q1.	Write a program to update employee table where sal<25000 is 
+	equalized to sal = 50000 using cursors
+ANS:
+
+SQL> SET SERVEROUT ON
+SQL> SET VERIFY OFF
+SQL> DECLARE
+  2  ENO EMPLOYEE.EMPNO%TYPE;
+  3  CURSOR EMP_CUR IS
+  4  SELECT EMPNO
+  5  FROM EMPLOYEE
+  6  WHERE SAL<25000;
+  7  BEGIN
+  8  OPEN EMP_CUR;
+  9  LOOP
+ 10  FETCH EMP_CUR INTO ENO;
+ 11  EXIT WHEN EMP_CUR%NOTFOUND;
+ 12  UPDATE EMPLOYEE
+ 13  SET SAL=50000
+ 14  WHERE EMPNO=ENO;
+ 15  END LOOP;
+ 16  CLOSE EMP_CUR;
+ 17  END;
+ 18  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from employee;
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7839 King       President                      17-NOV-01      50000
+                   10
+
+      7698 Blake      Manager              7839      01-MAY-01      28500
+                   30
+
+      7782 Clark      Manager              7839      09-JUN-01      50000
+                   10
+
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7566 Jones      Manager              7839      02-APR-01      29750
+                   20
+
+      7654 Martin     Salesman             7698      28-SEP-01      50000
+     14000         30
+
+      7499 Allen      Salesman             7698      20-FEB-01      50000
+      3000         30
+
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7844 Turner     Salesman             7698      08-FEB-01      50000
+         0         30
+
+      7900 James      Clerk                7698      03-DEC-01      50000
+                   30
+
+      7521 Ward       Salesman             7698      22-FEB-01      50000
+      5000         30
+
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7902 Ford       Analyst              7566      03-DEC-01      30000
+
+
+      7369 Smith      Clerk                7902      17-DEC-00      50000
+
+
+      7788 Scott      Analyst              7566      09-DEC-02      30000
+                   20
+
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7876 Adams      Clerk                7788      12-JAN-03      50000
+                   20
+
+      7934 Miller     Clerk                7782      23-JAN-02      50000
+
+
+
+14 rows selected.
+
+
+Q2.	Write a cursor to update the salary details as those who have a
+	salary less than the average salary should be updated as equal 
+	to average salary
+ANS:
+
+SQL> SET SERVEROUT ON
+SQL> SET VERIFY OFF
+SQL> DECLARE
+  2  SA EMPLOYEE.SAL%TYPE;
+  3  ENO EMPLOYEE.EMPNO%TYPE;
+  4   CURSOR EMP_CUR IS
+  5   SELECT EMPNO
+  6   FROM EMPLOYEE
+  7   WHERE SAL<(SELECT AVG(SAL) FROM EMPLOYEE);
+  8   BEGIN
+  9  SELECT AVG(SAL) INTO SA
+ 10  FROM EMPLOYEE;
+ 11    OPEN EMP_CUR;
+ 12    LOOP
+ 13  FETCH EMP_CUR INTO ENO;
+ 14  EXIT WHEN EMP_CUR%NOTFOUND;
+ 15   UPDATE EMPLOYEE
+ 16   SET SAL=SA
+ 17  WHERE EMPNO=ENO;
+ 18    END LOOP;
+ 19   CLOSE EMP_CUR;
+ 20   END;
+ 21  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from employee;
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7839 King       President                      17-NOV-01      50000
+                   10
+
+      7698 Blake      Manager              7839      01-MAY-01      28500
+                   30
+
+      7782 Clark      Manager              7839      09-JUN-01      24500
+                   10
+
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7566 Jones      Manager              7839      02-APR-01      29750
+                   20
+
+      7654 Martin     Salesman             7698      28-SEP-01   20732.14
+     14000         30
+
+      7499 Allen      Salesman             7698      20-FEB-01   20732.14
+      3000         30
+
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7844 Turner     Salesman             7698      08-FEB-01   20732.14
+         0         30
+
+      7900 James      Clerk                7698      03-DEC-01   20732.14
+                   30
+
+      7521 Ward       Salesman             7698      22-FEB-01   20732.14
+      5000         30
+
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7902 Ford       Analyst              7566      03-DEC-01      30000
+
+
+      7369 Smith      Clerk                7902      17-DEC-00   20732.14
+
+
+      7788 Scott      Analyst              7566      09-DEC-02      30000
+                   20
+
+
+     EMPNO ENAME      JOB                  MGR       HIREDATE         SAL
+---------- ---------- -------------------- --------- --------- ----------
+      COMM     DEPTNO
+---------- ----------
+      7876 Adams      Clerk                7788      12-JAN-03   20732.14
+                   20
+
+      7934 Miller     Clerk                7782      23-JAN-02   20732.14
+
+
+
+14 rows selected.
+
+
+Q3.	Write a cursor to display the names of employees
+ANS:
+
+SQL> SET SERVEROUTPUT  ON
+SQL> SET VERIFY OFF
+SQL> DECLARE
+  2  ENM EMPLOYEE.ENAME%TYPE;
+  3   CURSOR EMP_CUR IS
+  4   SELECT ENAME
+  5   FROM EMPLOYEE
+  6   WHERE EMPNO IS NOT NULL;
+  7   BEGIN
+  8    OPEN EMP_CUR;
+  9    LOOP
+ 10  FETCH EMP_CUR INTO ENM;
+ 11  EXIT WHEN EMP_CUR%NOTFOUND;
+ 12   DBMS_OUTPUT.PUT_LINE('Employee Name Is:  '||ENM);
+ 13    END LOOP;
+ 14  DBMS_OUTPUT.PUT_LINE(EMP_CUR%ROWCOUNT||' ROWS SELECTED');
+ 15   CLOSE EMP_CUR;
+ 16   END;
+ 17  /
+Employee Name Is:  King
+Employee Name Is:  Blake
+Employee Name Is:  Clark
+Employee Name Is:  Jones
+Employee Name Is:  Martin
+Employee Name Is:  Allen
+Employee Name Is:  Turner
+Employee Name Is:  James
+Employee Name Is:  Ward
+Employee Name Is:  Ford
+Employee Name Is:  Smith
+Employee Name Is:  Scott
+Employee Name Is:  Adams
+Employee Name Is:  Miller
+14 rows selected
+
+PL/SQL procedure successfully completed.
+
+
+Q4.	Write a program to get the employee details whose dept code is 10
+ANS:
+
+SQL> DECLARE
+  2  EMP_REC EMPLOYEE%ROWTYPE;
+  3   CURSOR EMP_CUR IS
+  4   SELECT *
+  5   FROM EMPLOYEE
+  6   WHERE DEPTNO=10;
+  7   BEGIN
+  8    OPEN EMP_CUR;
+  9    LOOP
+ 10  FETCH EMP_CUR INTO EMP_REC;
+ 11  EXIT WHEN EMP_CUR%NOTFOUND;
+ 12   DBMS_OUTPUT.PUT_LINE('EMPLOYEE '||EMP_CUR%ROWCOUNT);
+ 13   DBMS_OUTPUT.PUT_LINE('EMPLOYEE NUMBER IS: '||EMP_REC.EMPNO);
+ 14  DBMS_OUTPUT.PUT_LINE('EMPLOYEE NAME IS: '||EMP_REC.ENAME);
+ 15  DBMS_OUTPUT.PUT_LINE('JOB: '||EMP_REC.JOB);
+ 16  DBMS_OUTPUT.PUT_LINE('MANAGER: '||EMP_REC.MGR);
+ 17  DBMS_OUTPUT.PUT_LINE('HIRED ON: '||EMP_REC.HIREDATE);
+ 18  DBMS_OUTPUT.PUT_LINE('SALARY: '||EMP_REC.SAL);
+ 19  DBMS_OUTPUT.PUT_LINE('COMMISSION: '||EMP_REC.COMM);
+ 20  DBMS_OUTPUT.PUT_LINE('DEPARTMENT: '||EMP_REC.DEPTNO);
+ 21  END LOOP;
+ 22   CLOSE EMP_CUR;
+ 23   END;
+ 24  /
+EMPLOYEE 1
+EMPLOYEE NUMBER IS: 7839
+EMPLOYEE NAME IS: KING
+JOB: PRESIDENT
+MANAGER:
+HIRED ON: 17-NOV-01
+SALARY: 50000
+COMMISSION:
+DEPARTMENT: 10
+EMPLOYEE 2
+EMPLOYEE NUMBER IS: 7782
+EMPLOYEE NAME IS: CLARK
+JOB: MANAGER
+MANAGER: 7839
+HIRED ON: 09-JUN-01
+SALARY: 24500
+COMMISSION:
+DEPARTMENT: 10
+
+PL/SQL procedure successfully completed.
